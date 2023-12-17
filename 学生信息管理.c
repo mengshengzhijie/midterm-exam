@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_STUDENTS 2
+#define MAX_STUDENTS 100
 #define USERNAME "admin"
 #define PASSWORD "admin"
 
@@ -23,12 +23,12 @@ int count = 0;
 int login() {
     int attempt = 0;
     while(attempt < 3) {
-        char username[50]={"admin"}, password[50]={"admin"};
+        char username[50], password[50];
         printf("【用户登陆】\n");
         printf("\t用户名: ");
-//        scanf("%s", username);
+        scanf("%s", username);
         printf("\t密码: ");
-//        scanf("%s", password);
+        scanf("%s", password);
         if(strcmp(username, USERNAME) == 0 && strcmp(password, PASSWORD) == 0) {
             return 1;
         } else {
@@ -291,7 +291,7 @@ int main() {
                     exit(1);
                     break;
                 default:
-                    printf("Invalid choice!\n");
+                    printf("(⊙?⊙)？无效的选择!\n");
             }
         }
     } else {
