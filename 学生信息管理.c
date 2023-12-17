@@ -23,17 +23,17 @@ int count = 0;
 int login() {
     int attempt = 0;
     while(attempt < 3) {
-        char username[50], password[50];
-        printf("Enter username: ");
-        scanf("%s", username);
-        printf("Enter password: ");
-        scanf("%s", password);
-
+        char username[50]={"admin"}, password[50]={"admin"};
+        printf("【用户登陆】\n");
+        printf("\t用户名: ");
+//        scanf("%s", username);
+        printf("\t密码: ");
+//        scanf("%s", password);
         if(strcmp(username, USERNAME) == 0 && strcmp(password, PASSWORD) == 0) {
             return 1;
         } else {
             attempt++;
-            printf("Incorrect username or password. Attempt %d/%d\n", attempt, 3);
+            printf("{{{(>_<)}}}你输入的用户或密码错误 %d/%d\n", attempt, 3);
         }
     }
     return 0;
@@ -42,14 +42,21 @@ int login() {
 // 显示菜单函数
 void menu() {
     system("cls");
-    printf("Menu:\n");
-    printf("1.录入学生信息\n");
-    printf("2.显示学生信息\n");
-    printf("3.插入学生信息\n");
-    printf("4.删除学生信息\n");
-    printf("5.查找学生信息\n");
-    printf("6.排序学生信息\n");
-    printf("7.退出系统\n");
+    printf("");
+    printf("        --------------------------------------\n");
+    printf("        |             学生管理系统平台           |\n");
+    printf("        --------------------------------------\n");
+    for (int i = 0; i < 60; ++i) {
+        printf("——");
+    }
+    printf("\t功能菜单：\n");
+    printf("\t\t1、录入单个学生信息\n");
+    printf("\t\t2、显示所有学生的信\n");
+    printf("\t\t3、排序显示所有学生成绩\n");
+    printf("\t\t4、插入单个学生信息\n");
+    printf("\t\t5、删除单个学生信息\n");
+    printf("\t\t6、查找单个学生信息\n");
+    printf("\t\t7、退出系统\n");
 }
 
 // 录入学生信息函数
@@ -87,7 +94,7 @@ int main() {
         int choice;
         while(1) {
             menu();
-            printf("Enter your choice: ");
+            printf("请选择: ");
             scanf("%d", &choice);
 
             switch(choice) {
@@ -131,7 +138,7 @@ int main() {
             }
         }
     } else {
-        printf("Login failed!\n");
+        printf("'(￣m￣）...您输入的次数过多，请稍后在试一试！！\n");
     }
 
     return 0;
