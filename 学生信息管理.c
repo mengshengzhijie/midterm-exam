@@ -24,16 +24,16 @@ int login() {
     int attempt = 0;
     while(attempt < 3) {
         char username[50], password[50];
-        printf("用户名: ");
+        printf("Enter username: ");
         scanf("%s", username);
-        printf("密码: ");
+        printf("Enter password: ");
         scanf("%s", password);
 
         if(strcmp(username, USERNAME) == 0 && strcmp(password, PASSWORD) == 0) {
             return 1;
         } else {
             attempt++;
-            printf("{{{(>_<)}}}密码错误 %d/%d\n", attempt, 3);
+            printf("Incorrect username or password. Attempt %d/%d\n", attempt, 3);
         }
     }
     return 0;
@@ -55,7 +55,31 @@ void menu() {
 // 录入学生信息函数
 void inputStudentInfo() {
     // 实现录入学生信息功能
+}
 
+// 显示学生信息函数
+void displayStudentInfo() {
+    // 实现显示学生信息功能
+}
+
+// 插入学生信息函数
+void insertStudentInfo() {
+    // 实现插入学生信息功能
+}
+
+// 删除学生信息函数
+void removeStudentInfo() {
+    // 实现删除学生信息功能
+}
+
+// 查找学生信息函数
+void searchStudentInfo() {
+    // 实现查找学生信息功能
+}
+
+// 排序学生信息函数
+void sortStudentInfo() {
+    // 实现排序学生信息功能
 }
 
 int main() {
@@ -107,7 +131,7 @@ int main() {
             }
         }
     } else {
-        printf("(￣m￣）您输入错数过多，请稍后在试一试！！\n");
+        printf("Login failed!\n");
     }
 
     return 0;
