@@ -66,24 +66,63 @@ void inputStudentInfo() {
         printf("学生数量已达最大值，无法再添加新的学生信息。\n");
         return;
     }
-
+    int verify;
+    verify = 0;
     Student new_student;
 
-    printf("请输入学生信息：\n");
-    printf("学号: ");
-    scanf("%d", &new_student.id);
+    do {
+        printf("请输入学生信息：\n");
+        printf("学号: ");
+        scanf("%d", &new_student.id);
 
-    printf("姓名: ");
-    scanf("%s", new_student.name);
+        // 检查学号是否已存在
+        for (int i = 0; i < count; i++) {
+            if (students[i].id == new_student.id) {
+                printf("该学号已存在，请重新输入。\n");
+                verify = 1;
+                break;
+            }
+        }
+    } while (new_student.id <= 0 || new_student.id > MAX_STUDENTS); // 确保学号在有效范围内
 
-    printf("分数1: ");
-    scanf("%d", &new_student.score1);
+    do {
+        printf("姓名: ");
+        scanf("%s", new_student.name);
 
-    printf("分数2: ");
-    scanf("%d", &new_student.score2);
+        // 检查姓名是否包含数字
+        for (int i = 0; new_student.name[i] != '\0'; i++) {
+            if (isdigit(new_student.name[i])) {
+                printf("姓名不能包含数字，请重新输入。\n");
+                verify = 1;
+                break;
+            }
+        }
+        for (int i = 0; i < count; i++) {
+            if (strcmp(students[i].name, new_student.name) == 0) {
+                printf("该姓名已存在，请重新输入。\n");
+                return;
+            }
+        }
+    } while (new_student.name[0] == '\0'); // 确保姓名不为空
 
-    printf("分数3: ");
-    scanf("%d", &new_student.score3);
+    do {
+        printf("分数1: ");
+        scanf("%d", &new_student.score1);
+        printf("分数2: ");
+        scanf("%d", &new_student.score2);
+        printf("分数3: ");
+        scanf("%d", &new_student.score3);
+
+        // 检查成绩是否在0-100之间
+        if (new_student.score1 < 0 || new_student.score1 > 100 ||
+            new_student.score2 < 0 || new_student.score2 > 100 ||
+            new_student.score3 < 0 || new_student.score3 > 100) {
+            printf("成绩必须在0-100之间，请重新输入。\n");
+            verify = 1;
+        }
+    } while (new_student.score1 < 0 || new_student.score1 > 100 ||
+             new_student.score2 < 0 || new_student.score2 > 100 ||
+             new_student.score3 < 0 || new_student.score3 > 100);
 
     new_student.average_score = (new_student.score1 + new_student.score2 + new_student.score3) / 3.0f;
 
@@ -292,6 +331,7 @@ int main() {
                     break;
                 default:
                     printf("(⊙?⊙)？无效的选择!\n");
+                    system("pause");
             }
         }
     } else {
